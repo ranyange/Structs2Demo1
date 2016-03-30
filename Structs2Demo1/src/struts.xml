@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">  
+  
+<struts>  
+<!--//基础配置  
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />  
+    <constant name="struts.devMode" value="true" />  
+    <constant name="struts.i18n.reload" value="true" />  
+    <constant name="struts.configuration.xml.reload" value="true" ></constant>  
+-->  
+    <package name="p1" namespace="/test" extends="struts-default">  
+  		<!-- hello 是对应action的对外访问路径 -->
+  		<!-- action动态跳转 -->
+        
+        <action name="go" class="action.PreAction" method="goLogin">
+        	<result name="ok">/login.jsp</result>
+        </action>
+        <action name="hello" class="action.LoginAction" method="login" >
+        	
+        	<result name="success">/index.jsp</result>
+    		<result name="fail">/login.jsp</result>
+        </action>
+     <!-- 此时浏览器地址栏应该写: http://localhost:8090/项目名+namespace/hello -->  
+    </package>  
+      
+</struts>  
