@@ -32,7 +32,7 @@
 				<input type="password" placeholder="密码" required="" name="password" style="background:url(./images/1.png) no-repeat; "/>
 			</div>
 			<div>
-				<input type="text" placeholder="验证码" required="" name="code" style="background:url(./images/1.png) no-repeat;" />
+				<input type="text" placeholder="验证码" required="" name="kaptcha" style="background:url(./images/1.png) no-repeat;" />
 			</div>
 			<div>
 				<img id="img" alt="验证码" onclick="upload()" src="/Structs2Demo1/kaptcha.jpg" title="验证码">
