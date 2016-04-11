@@ -10,16 +10,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title></title>
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
-<script type="text/javascript" src="./My97DatePicker/WdatePicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%=path %>/css/main.css" />
+<script type="text/javascript" src="<%=path %>/My97DatePicker/WdatePicker.js"></script>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	 
+	<link rel="stylesheet" type="text/css" href="<%=path %>/styles.css">
+	 
 
   </head>
   

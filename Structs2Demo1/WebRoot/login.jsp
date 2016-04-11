@@ -13,14 +13,13 @@
 		    document.getElementById('img').src="<%=path %>/kaptcha.jpg?d="+time;
 		    }
   		</script>
-  
-	</head>
+	</head>	
 <body>
 	<img src="${pageContext.request.contextPath}/images/logo.png" width="280" height="100" style="position:absolute;  left:100px; top:60px; z-index:3;"/> 
 	<img src="./images/11.jpg" height="100%" width="100%" style="position:absolute;z-index:2;"/> 
 	<div class="container" style="margin-top: 10%; font-family: fantasy;position:absolute;z-index:4;width: 1300px; left:30px; top:80px;">
 	<section id="content">
-		<form action="${pageContext.request.contextPath }/test/hello">
+		<form action="${pageContext.request.contextPath }/test/loginAction_1">
 			<h1>个人通讯录</h1>
 			<div>
 				<span>${sessionScope.exception }<c:remove var="exception" scope="session"></c:remove></span>
@@ -38,6 +37,9 @@
 				<img id="img" alt="验证码" onclick="upload()" src="/Structs2Demo1/kaptcha.jpg" title="验证码">
 			</div>
 			<div>
+			<div>
+				<span>${sessionScope.kapError }</span>
+			</div>
 				 
 			</div>
 			 

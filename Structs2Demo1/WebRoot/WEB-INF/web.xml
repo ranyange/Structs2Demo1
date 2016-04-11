@@ -9,20 +9,44 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <!-- 谷歌验证码 -->
    <servlet>
   	<servlet-name>kaptcha</servlet-name>
   	<servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
   </servlet>
-  <servlet-mapping>
-  	<servlet-name>kaptcha</servlet-name>
-  	<url-pattern>/kaptcha.jpg</url-pattern>
-  </servlet-mapping>
+  <!-- 过滤器拦截 -->
+  <filter>
+  	<filter-name>myfilter</filter-name>
+  	<filter-class>action.myfilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>myfilter</filter-name>
+  	<url-pattern>*.action</url-pattern>
+  	<url-pattern>/addContact.jsp</url-pattern>
+  	<url-pattern>/updatePerson.jsp</url-pattern>
+  	<url-pattern>/delete</url-pattern>
+  	<url-pattern>/WEB-INF/queryAllPerson.jsp</url-pattern>
+  </filter-mapping>
+  <!-- Struts2 -->
   <filter>
   	<filter-name>struts2</filter-name>
   	<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
   </filter>
+  
+  <servlet-mapping>
+  	<servlet-name>kaptcha</servlet-name>
+  	<url-pattern>/kaptcha.jpg</url-pattern>
+  </servlet-mapping>
+  <!-- 过滤器的mapping要放在Struts-mapping之前 -->
+  <!-- 因为Struts的filter不会对请求放行 -->
+  
+  
   <filter-mapping>
   	<filter-name>struts2</filter-name>
   	<url-pattern>/*</url-pattern>
   </filter-mapping>
+  
+ 
+  
+  
 </web-app>

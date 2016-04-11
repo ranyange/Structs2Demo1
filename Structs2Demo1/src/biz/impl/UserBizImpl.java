@@ -82,8 +82,10 @@ public class UserBizImpl implements UserBiz {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			throw new RuntimeException(e);
-		}finally{
+			return false;
+		}
+		
+		finally{
 			DBCPUtil.close(null, null, conn);
 		}
 		//return true;

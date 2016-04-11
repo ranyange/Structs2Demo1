@@ -40,20 +40,35 @@ public class LoginAction extends ActionSupport{
 	//跳转到登录页面;
 	 
 	//jsp页面会跳转到这个页面;
-	public String login(){
+	public String login(){ 
 		//第一步,从session中拿到验证码,判断
 		@SuppressWarnings("unchecked")
 		Map<String,Object> sessionMap = (Map<String, Object>) ActionContext.getContext().get("session");
 		String kapKey = Constants.KAPTCHA_SESSION_KEY;
 		String kaptcha = (String) sessionMap.get(kapKey);
-		System.out.println(kaptcha);
-		System.out.println(getKaptcha());
+		if(!kapKey.equals(kaptcha)){
+			sessionMap.put("kapError", "验证码错误");
+		} 
+		
+		
 		UserBiz biz = new UserBizImpl();
-		System.out.println(getUsername());
-		System.out.println(getPassword());
-		boolean flag = biz.login(getUsername(), getPassword());
-		if(flag)
-			return "success";
-		return "fail";
+		
+		
+		String username = getUsername();
+		
+		try {
+			boolean flag = biz.login(getUsername(), getPassword());
+			Map<String,Object> loginSession = (Map<String,Object>)ActionContext.getContext().get("session");
+			if(flag){
+				//将登录信息存入session;
+				loginSession.put("username", username);
+				return "success";
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return "fail";
+		}
+			
+	    return "fail";
 	}
 }

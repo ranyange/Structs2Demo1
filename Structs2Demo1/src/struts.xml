@@ -9,20 +9,74 @@
     <constant name="struts.devMode" value="true" />  
     <constant name="struts.i18n.reload" value="true" />  
     <constant name="struts.configuration.xml.reload" value="true" ></constant>  
--->  
-    <package name="p1" namespace="/test" extends="struts-default">  
-  		<!-- hello 是对应action的对外访问路径 -->
+-->
+    <package name="p1" namespace="/test"  extends="struts-default">  
+  		<!-- hello 是对应action的?对外访问路径 -->
   		<!-- action动态跳转 -->
         
+        <!-- 跳转到登录action -->
         <action name="go" class="action.PreAction" method="goLogin">
         	<result name="ok">/login.jsp</result>
         </action>
-        <action name="hello" class="action.LoginAction" method="login" >
-        	
-        	<result name="success">/index.jsp</result>
+        
+        <!-- 登录验证阶段 -->
+        <action name="loginAction_1" class="action.LoginAction" method="login" >
+        	<!-- result 如果要跳转到action,就按照如下格式写路径即可. -->
+        	<result name="success" type="redirectAction">queryAllPersonAction_1</result>
     		<result name="fail">/login.jsp</result>
         </action>
+        	
+        	
+        	
+        <!-- 用户注册 -->
+        <action name="registerAction_1" class="action.RegisterAction" method="signUp">
+        	<result name="signUp_able">/login.jsp</result>
+        	<result name="signUp_unable">/register.jsp</result>
+        </action>
+        
+       <!--  type="redirect" 是重定向到一个URL。
+       type="redirect-action" 是重定向到一个action。 -->
+   
+       
+        <!-- 查询显示所有联系人 -->
+        <action name="queryAllPersonAction_1" class="action.QueryAllContactAction" method="queryContact">
+        	<result name="query_able">/WEB-INF/queryAllPerson.jsp</result>
+        </action>
+        
+         <!-- 删除联系人 -->
+        <action name="deleteContactAction_1" class="action.DeleteContactAction" method="del">
+        	<!-- 删除过联系人后跳转到显示联系人页面 -->
+        	<result name="delete_able" type="redirectAction">queryAllPersonAction_1</result>
+        </action>
+        
+		<!-- 添加联系人  -->
+		<action name="AddContactAction_1" class="action.AddContactAction" method="add">
+			<!-- 跳转到显示所有联系人action -->
+			<result name="add_able" type="redirectAction">queryAllPersonAction_1</result>
+		</action>
+
+        <!-- 修改联系人信息 0-->
+        <action name="updateContactAciton_0" class="action.UpdateContactAction" method="pos">
+        	<result name="update_able" type="redirectAction" >queryAllPersonAction_1</result>
+        	 
+        </action>
+        
+        <!-- 注销已登录用户 -->
+        <action name="logoutAction_1" class="action.ExitAction" method="logout">
+        	<result name="logout_able" type="redirect">
+        		/login.jsp
+        	</result>
+        </action>
+        
+        <!-- 修改联系人信息 1 -->
+        <!-- <action name="updateContactAciton_1">
+        	<result name="update_able">
+        		/WEB-INF/queryAllPerson.jsp
+        	</result>
+        </action>
+  		-->
+  		
      <!-- 此时浏览器地址栏应该写: http://localhost:8090/项目名+namespace/hello -->  
     </package>  
-      
+    
 </struts>  
